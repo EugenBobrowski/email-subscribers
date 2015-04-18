@@ -19,6 +19,9 @@ class es_cls_intermediate
 			case 'import':
 				require_once(ES_DIR.'subscribers'.DIRECTORY_SEPARATOR.'view-subscriber-import.php');
 				break;
+			case 'sync':
+				require_once(ES_DIR.'subscribers'.DIRECTORY_SEPARATOR.'view-subscriber-sync.php');
+				break;
 			default:
 				require_once(ES_DIR.'subscribers'.DIRECTORY_SEPARATOR.'view-subscriber-show.php');
 				break;

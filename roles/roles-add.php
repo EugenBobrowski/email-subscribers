@@ -5,6 +5,14 @@ $es_errors = array();
 $es_success = '';
 $es_error_found = FALSE;
 
+$es_roles_subscriber = "";
+$es_roles_mail = "";
+$es_roles_notification = "";
+$es_roles_sendmail = "";
+$es_roles_setting = "";
+$es_roles_sentmail = "";
+$es_roles_help = "";
+
 // Preset the form fields
 $form = array(
 	'es_roles_subscriber' => '',

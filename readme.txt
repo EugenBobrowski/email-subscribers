@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-
 Plugin URI: http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
 Tags: email newsletter, subscription, sendmail, newsletter, subscribers
 Requires at least: 3.4
-Tested up to: 4.1.1
-Stable tag: 2.7
+Tested up to: 4.2
+Stable tag: 2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -202,6 +202,12 @@ This warning issue has been fixed (Warning: call_user_func_array() expects param
 
 Up to plugin version 2.6 only administrator level users can manage this plugin in dashboard. From this version I have introduced new feature  called Roles. The user role can be selected using this Roles Menu. For example, If you want to give Send Email feature to Editor. Go to plugin Roles menu using administrator login and select Editor role to Send Email Menu, So that your Editor level user can access plugin Send Email menu to publish newsletter emails.
 
+= 2.8 =
+
+* Tested upto 4.2
+* Fixed warning message bug on Roles page
+* Sync Email option has been added in the subscribers admin page. with this option all newly registered email address will be synced automatically into the plugin subscribers group.
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -292,3 +298,9 @@ This warning issue has been fixed (Warning: call_user_func_array() expects param
 = 2.7 =
 
 Up to plugin version 2.6 only administrator level users can manage this plugin in dashboard. From this version I have introduced new feature  called Roles. The user role can be selected using this Roles Menu. For example, If you want to give Send Email feature to Editor. Go to plugin Roles menu using administrator login and select Editor role to Send Email Menu, So that your Editor level user can access plugin Send Email menu to publish newsletter emails.
+
+= 2.8 =
+
+* Tested upto 4.2
+* Fixed warning message bug on Roles page
+* Sync Email option has been added in the subscribers admin page. with this option all newly registered email address will be synced automatically into the plugin subscribers group.

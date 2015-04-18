@@ -126,9 +126,47 @@ class es_cls_registerhook
 	public static function es_widget_loading()
 	{
 		register_widget( 'es_widget_register' );
-	}
+	}	
 }
 
+function es_sync_registereduser( $user_id )
+{        
+	$es_c_emailsubscribers = get_option('es_c_emailsubscribers', 'norecord');
+	if($es_c_emailsubscribers == 'norecord' || $es_c_emailsubscribers == "")
+	{
+		// No action is required
+	}
+	else
+	{
+		if(($es_c_emailsubscribers['es_registered'] == "YES") && ($user_id <> ""))
+		{
+			$es_registered = $es_c_emailsubscribers['es_registered'];
+			$es_registered_group = $es_c_emailsubscribers['es_registered_group'];
+
+			$user_info = get_userdata($user_id);
+			$user_firstname = $user_info->user_firstname;
+			if($user_firstname == "")
+			{
+				$user_firstname = $user_info->user_login;
+			}
+			$user_mail = $user_info->user_email;
+			
+			$form['es_email_name'] = $user_firstname;
+			$form['es_email_mail'] = $user_mail;
+			$form['es_email_group'] = $es_c_emailsubscribers['es_registered_group'];
+			$form['es_email_status'] = "Confirmed";
+			$action = es_cls_dbquery::es_view_subscriber_ins($form, "insert");
+			if($action == "sus")
+			{
+				//Inserted successfully. Below 3 line of code will send WELCOME email to subscribers.
+				$subscribers = array();
+				$subscribers = es_cls_dbquery::es_view_subscriber_one($user_mail);
+				es_cls_sendmail::es_sendmail("welcome", $template = 0, $subscribers, "welcome", 0);
+			}
+		}
+	}	
+}
+	
 class es_widget_register extends WP_Widget 
 {
 	function __construct() 
