@@ -55,6 +55,7 @@ This plugin have subscription box and it allows users to publicly subscribe by s
 * Dutch (nl_NL_2) - [Paul't Hoen](#)
 * Serbian (sr_RS) - [Ogi Djuraskovic](http://firstsiteguide.com/)
 * German (de_DE) - [Stefanie Drucker](http://www.kreativhuhn.at)
+* Russian (ru_RU) - [everyonesdesign](https://wordpress.org/support/profile/everyonesdesign)
 
 = Frequently asked questions: =
 
