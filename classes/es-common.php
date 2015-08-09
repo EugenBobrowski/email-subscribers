@@ -27,6 +27,18 @@ class es_cls_common
 			case "Disable":
 				$returnstring = '<span style="color:#FF0000">Disable</span>';
 				break;
+			case "In Queue":
+				$returnstring = '<span style="color:#FF0000">In Queue</span>';
+				break;
+			case "Sent":
+				$returnstring = '<span style="color:#00FF00;font-weight:bold;">Sent</span>';
+				break;
+			case "Cron Mail":
+				$returnstring = '<span style="color:#ffd700;font-weight:bold;">Cron Mail</span>';
+				break;	
+			case "Instant Mail":
+				$returnstring = '<span style="color:#993399;">Instant Mail</span>';
+				break;
 			default:
        			$returnstring = $value;
 		}
@@ -134,6 +146,12 @@ class es_cls_common
 		$report = $report. "Thank You <br/>";
 		$report = $report. "www.gopiplus.com <br/>";
 		return $report;
+	}
+	
+	public static function es_special_letters() 
+	{
+		$string = "/[\'^$%&*()}{@#~?><>,|=_+\"]/";
+		return $string;
 	}
 }
 ?>

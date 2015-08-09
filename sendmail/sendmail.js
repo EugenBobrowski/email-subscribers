@@ -29,16 +29,16 @@ function _es_mailgroup(es_email_group)
 {
 	document.getElementById("es_templ_heading").value = document.es_form.es_templ_heading.value;
 	document.getElementById("es_email_group").value = es_email_group;
-	document.es_form.action="admin.php?page=es-sendemail";
+	document.es_form.action="admin.php?page=es-sendemail&search=" + document.es_form.es_search_query.value;
 	document.es_form.submit();
 }
 
 function _es_sendemailsearch(es_search_query)
 {
+	
 	document.getElementById("es_templ_heading").value = document.es_form.es_templ_heading.value;
-	document.getElementById("es_email_group").value = document.es_form.es_email_group.value;
-	document.getElementById("es_search_query").value = es_search_query;
-	document.es_form.action="admin.php?page=es-sendemail";
+	document.getElementById("es_email_group").value = document.es_form.es_email_group.value;	
+	document.es_form.action="admin.php?page=es-sendemail&search=" + es_search_query;
 	document.es_form.submit();
 }
 
@@ -57,12 +57,20 @@ function _es_submit()
 //		document.es_form.es_email_group.focus();
 //		return false;
 //	}
+
+	if(document.es_form.es_sent_type.value=="")
+	{
+		alert("Please select your mail type.")
+		document.es_form.es_sent_type.focus();
+		return false;
+	}
 	
 	if(confirm("Are you sure you want to send email to all selected email address?"))
 	{
 		document.getElementById("es_templ_heading").value = document.es_form.es_templ_heading.value;
 		document.getElementById("es_email_group").value = document.es_form.es_email_group.value;
 		document.getElementById("es_search_query").value = document.es_form.es_search_query.value;
+		document.getElementById("es_email_group").value = document.es_form.es_email_group.value;
 		document.getElementById("sendmailsubmit").value = "yes";
 		document.es_form.submit();
 	}

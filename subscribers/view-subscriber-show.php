@@ -1,9 +1,25 @@
 <?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <?php
+$es_c_email_subscribers_ver = get_option('email-subscribers');
+if ($es_c_email_subscribers_ver <> "2.9")
+{
+	?>
+	<div class="error fade">
+		<p>
+		Note: You have recently upgraded the plugin and your tables are not sync. 
+		Please <a title="Sync plugin tables." href="<?php echo ES_ADMINURL; ?>?page=es-settings&amp;ac=sync"><?php _e('Click Here', ES_TDOMAIN); ?></a> to sync the table. 
+		This is mandatory and it will not affect your data.
+		</p>
+	</div>
+	<?php
+}
+
 // Form submitted, check the data
 $search = isset($_GET['search']) ? $_GET['search'] : 'ALL';
 $search_sts = isset($_GET['sts']) ? $_GET['sts'] : '';
 $search_count = isset($_GET['cnt']) ? $_GET['cnt'] : '1';
+$search_group = isset($_GET['group']) ? $_GET['group'] : 'ALL';
+
 if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 {
 	$did = isset($_GET['did']) ? $_GET['did'] : '0';
@@ -12,7 +28,8 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 	$es_success_msg = FALSE;
 	if (isset($_POST['frm_es_bulkaction']) && $_POST['frm_es_bulkaction'] != 'delete' 
 			&& $_POST['frm_es_bulkaction'] != 'resend' && $_POST['frm_es_bulkaction'] != 'groupupdate' 
-				&& $_POST['frm_es_bulkaction'] != 'search_sts' && $_POST['frm_es_bulkaction'] != 'search_cnt')
+				&& $_POST['frm_es_bulkaction'] != 'search_sts' && $_POST['frm_es_bulkaction'] != 'search_cnt'
+					&& $_POST['frm_es_bulkaction'] != 'search_group')
 	{	
 		// First check if ID exist with requested ID
 		$result = es_cls_dbquery::es_view_subscriber_count($did);
@@ -191,6 +208,10 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 		{
 			// Nothing
 		}
+		elseif (isset($_POST['frm_es_bulkaction']) && $_POST['frm_es_bulkaction'] == 'search_group')
+		{
+			// Nothing
+		}
 	}
 	
 	if ($es_success_msg == TRUE)
@@ -210,18 +231,31 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 	$myData = array();
 	$offset = 0;
 	$limit = 200;
+	
 	if ($search_count == 0)
 	{
 		$limit = 9999;
 	}
+	
 	if ($search_count > 1)
 	{
 		$offset = $search_count;
 	}
-	//echo $offset . "<br>";
-	//echo $limit . "<br>";;
 	
-	$myData = es_cls_dbquery::es_view_subscriber_search2($search, 0, $search_sts, $offset, $limit);
+	if ($search_count == 1001)
+	{
+		$limit = 1000;
+	}
+	elseif ($search_count == 2001)
+	{
+		$limit = 3000;
+	}
+	elseif ($search_count == 5001)
+	{
+		$limit = 5000;
+	}
+	
+	$myData = es_cls_dbquery::es_view_subscriber_search2($search, 0, $search_sts, $offset, $limit, $search_group);
 	?>
 	<div class="tablenav">
 		<span style="text-align:left;">
@@ -237,8 +271,27 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=ALL">ALL</a> 
 		<span>
 		<span style="float:right;">
+		<select name="search_group_action" id="search_group_action" onchange="return _es_search_group_action(this.value)">
+			<option value=""><?php _e('All Groups', ES_TDOMAIN); ?></option>
+			<?php
+			$groups = array();
+			$groups = es_cls_dbquery::es_view_subscriber_group();
+			if(count($groups) > 0)
+			{
+				$i = 1;
+				foreach ($groups as $group)
+				{
+					?>
+					<option value="<?php echo esc_html(stripslashes($group["es_email_group"])); ?>" <?php if(stripslashes($search_group) == $group["es_email_group"]) { echo 'selected="selected"' ; } ?>>
+					<?php echo stripslashes($group["es_email_group"]); ?>
+					</option>
+					<?php
+				}
+			}
+			?>
+		</select>
 		<select name="search_sts_action" id="search_sts_action" onchange="return _es_search_sts_action(this.value)">
-			<option value=""><?php _e('View all status', ES_TDOMAIN); ?></option>
+			<option value=""><?php _e('All Status', ES_TDOMAIN); ?></option>
 			<option value="Confirmed" <?php if($search_sts=='Confirmed') { echo 'selected="selected"' ; } ?>><?php _e('Confirmed', ES_TDOMAIN); ?></option>
 			<option value="Unconfirmed" <?php if($search_sts=='Unconfirmed') { echo 'selected="selected"' ; } ?>><?php _e('Unconfirmed', ES_TDOMAIN); ?></option>
 			<option value="Unsubscribed" <?php if($search_sts=='Unsubscribed') { echo 'selected="selected"' ; } ?>><?php _e('Unsubscribed', ES_TDOMAIN); ?></option>
@@ -246,11 +299,14 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 		</select>
 		<select name="search_count_action" id="search_count_action" onchange="return _es_search_count_action(this.value)">
 			<option value="1" <?php if($search_count=='1') { echo 'selected="selected"' ; } ?>>1 to 200 emails</option>
-			<option value="201" <?php if($search_count=='201') { echo 'selected="selected"' ; } ?>>201 to 400 emails</option>
-			<option value="401" <?php if($search_count=='401') { echo 'selected="selected"' ; } ?>>401 to 600 emails</option>
-			<option value="601" <?php if($search_count=='601') { echo 'selected="selected"' ; } ?>>601 to 800 emails</option>
-			<option value="801" <?php if($search_count=='801') { echo 'selected="selected"' ; } ?>>801 to 1000 emails</option>
-			<option value="0" <?php if($search_count=='0') { echo 'selected="selected"' ; } ?>>display all</option>
+			<option value="201" <?php if($search_count=='201') { echo 'selected="selected"' ; } ?>>201 to 400</option>
+			<option value="401" <?php if($search_count=='401') { echo 'selected="selected"' ; } ?>>401 to 600</option>
+			<option value="601" <?php if($search_count=='601') { echo 'selected="selected"' ; } ?>>601 to 800</option>
+			<option value="801" <?php if($search_count=='801') { echo 'selected="selected"' ; } ?>>801 to 1000</option>
+			<option value="1001" <?php if($search_count=='1001') { echo 'selected="selected"' ; } ?>>1001 to 2000</option>
+			<option value="2001" <?php if($search_count=='2001') { echo 'selected="selected"' ; } ?>>2001 to 5000</option>
+			<option value="5001" <?php if($search_count=='5001') { echo 'selected="selected"' ; } ?>>5001 to 10000</option>
+			<option value="0" <?php if($search_count=='0') { echo 'selected="selected"' ; } ?>>Display all</option>
 		</select>
 		</span>
     </div>
@@ -258,7 +314,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
-            <th class="check-column" scope="col">
+            <th class="check-column" scope="col" style="padding: 8px 2px;">
 			<input type="checkbox" name="es_checkall" id="es_checkall" onClick="_es_checkall('frm_es_display', 'chk_delete[]', this.checked);" /></th>
             <th scope="col"><?php _e('Sno', ES_TDOMAIN); ?></th>
 			<th scope="col"><?php _e('Email address', ES_TDOMAIN); ?></th>
@@ -271,7 +327,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
         </thead>
         <tfoot>
           <tr>
-            <th class="check-column" scope="col">
+            <th class="check-column" scope="col" style="padding: 8px 2px;">
 			<input type="checkbox" name="es_checkall" id="es_checkall" onClick="_es_checkall('frm_es_display', 'chk_delete[]', this.checked);" /></th>
             <th scope="col"><?php _e('Sno', ES_TDOMAIN); ?></th>
 			<th scope="col"><?php _e('Email address', ES_TDOMAIN); ?></th>
@@ -305,11 +361,11 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 					<td><?php echo $data['es_email_mail']; ?></td>
 					<td><?php echo stripslashes($data['es_email_name']); ?></td>     
 					<td><?php echo es_cls_common::es_disp_status($data['es_email_status']); ?></td>
-					<td><?php echo $data['es_email_group']; ?></td>
+					<td><?php echo stripslashes($data['es_email_group']); ?></td>
 					<td><?php echo $data['es_email_id']; ?></td>
 					<td><div> 
 					<span class="edit">
-						<a title="Edit" href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=edit&search=<?php echo $search; ?>&amp;did=<?php echo $data['es_email_id']; ?>&sts=<?php echo $search_sts; ?>&cnt=<?php echo $search_count; ?>">
+						<a title="Edit" href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=edit&search=<?php echo $search; ?>&amp;did=<?php echo $data['es_email_id']; ?>&sts=<?php echo $search_sts; ?>&cnt=<?php echo $search_count; ?>&group=<?php echo $search_group; ?>">
 					<?php _e('Edit', ES_TDOMAIN); ?></a> | </span> 
 					<span class="trash">
 					<a onClick="javascript:_es_delete('<?php echo $data['es_email_id']; ?>','<?php echo $search; ?>')" href="javascript:void(0);">
@@ -350,6 +406,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 	  <input name="searchquery" id="searchquery" type="hidden" value="<?php echo $search; ?>" />
 	  <input name="searchquery_sts" id="searchquery_sts" type="hidden" value="<?php echo $search_sts; ?>" />
 	  <input name="searchquery_cnt" id="searchquery_cnt" type="hidden" value="<?php echo $search_count; ?>" />
+	  <input name="searchquery_group" id="searchquery_group" type="hidden" value="<?php echo esc_html(stripslashes($search_group)); ?>" />
 	<div style="padding-top:10px;"></div>
     <div class="tablenav">
 		<div class="alignleft">
@@ -379,7 +436,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 		<div class="alignright">
 			<a class="button add-new-h2" title="Click to add new email." href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=add"><?php _e('Add New', ES_TDOMAIN); ?></a> 
 			<a class="button add-new-h2" title="Click to import emails." href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=import"><?php _e('Import Email', ES_TDOMAIN); ?></a> 
-			<a class="button add-new-h2" title="Click to export emails into CSV file." href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=export"><?php _e('Export Email (CSV)', ES_TDOMAIN); ?></a> 
+			<a class="button add-new-h2" title="Click to export emails into CSV file." href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=export"><?php _e('Export Email', ES_TDOMAIN); ?></a> 
 			<a class="button add-new-h2" title="Automatically add registered user." href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=sync"><?php _e('Sync Email', ES_TDOMAIN); ?></a> 
 			<a class="button add-new-h2" target="_blank" href="<?php echo ES_FAV; ?>"><?php _e('Help', ES_TDOMAIN); ?></a> 
 		</div>

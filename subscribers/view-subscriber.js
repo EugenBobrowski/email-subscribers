@@ -49,8 +49,9 @@ function _es_search_sts_action(sts)
 {
 	var searchquery = document.frm_es_display.searchquery.value;
 	var cnt = document.frm_es_display.searchquery_cnt.value;
+	var group = document.frm_es_display.searchquery_group.value;
 	document.frm_es_display.frm_es_bulkaction.value = 'search_sts';
-	document.frm_es_display.action="admin.php?page=es-view-subscribers&search=" + searchquery + "&sts=" + sts + "&cnt=" + cnt;
+	document.frm_es_display.action="admin.php?page=es-view-subscribers&search=" + searchquery + "&sts=" + sts + "&cnt=" + cnt + "&group=" + group;
 	document.frm_es_display.submit();
 }
 
@@ -58,8 +59,19 @@ function _es_search_count_action(cnt)
 {
 	var searchquery = document.frm_es_display.searchquery.value;
 	var sts = document.frm_es_display.searchquery_sts.value;
+	var group = document.frm_es_display.searchquery_group.value;
 	document.frm_es_display.frm_es_bulkaction.value = 'search_cnt';
-	document.frm_es_display.action="admin.php?page=es-view-subscribers&search=" + searchquery + "&sts=" + sts + "&cnt=" + cnt;
+	document.frm_es_display.action="admin.php?page=es-view-subscribers&search=" + searchquery + "&sts=" + sts + "&cnt=" + cnt + "&group=" + group;
+	document.frm_es_display.submit();
+}
+
+function _es_search_group_action(group)
+{
+	var searchquery = document.frm_es_display.searchquery.value;
+	var sts = document.frm_es_display.searchquery_sts.value;
+	var cnt = document.frm_es_display.searchquery_cnt.value;
+	document.frm_es_display.frm_es_bulkaction.value = 'search_group';
+	document.frm_es_display.action="admin.php?page=es-view-subscribers&search=" + searchquery + "&sts=" + sts + "&cnt=" + cnt + "&group=" + group;
 	document.frm_es_display.submit();
 }
 

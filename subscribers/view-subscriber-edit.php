@@ -1,6 +1,8 @@
 <?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <div class="wrap">
 <?php
+$es_error_found = FALSE;
+
 $did = isset($_GET['did']) ? $_GET['did'] : '0';
 $search = isset($_GET['search']) ? $_GET['search'] : 'A,B,C';
 $sts = isset($_GET['sts']) ? $_GET['sts'] : '';
@@ -47,6 +49,16 @@ if (isset($_POST['es_form_submit']) && $_POST['es_form_submit'] == 'yes')
 	$form['es_email_group'] = isset($_POST['es_email_group']) ? $_POST['es_email_group'] : '';
 	$form['es_email_id'] = isset($_POST['es_email_id']) ? $_POST['es_email_id'] : '0';
 
+	if($form['es_email_group'] <> "")
+	{
+		$special_letters = es_cls_common::es_special_letters();
+		if (preg_match($special_letters, $form['es_email_group']))
+		{
+			$es_errors[] = __('Error: Special characters are not allowed in the group name.', ES_TDOMAIN);
+			$es_error_found = TRUE;
+		}
+	}
+
 	//	No errors found, we can add this Group to the table
 	if ($es_error_found == FALSE)
 	{	
@@ -55,6 +67,11 @@ if (isset($_POST['es_form_submit']) && $_POST['es_form_submit'] == 'yes')
 		if($action == "sus")
 		{
 			$es_success = __('Email was successfully updated.', ES_TDOMAIN);
+		}
+		elseif($action == "ext")
+		{
+			$es_errors[] = __('Email already exist for this group.', ES_TDOMAIN);
+			$es_error_found = TRUE;
 		}
 	}
 }
@@ -110,11 +127,15 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
 			$i = 1;
 			foreach ($groups as $group)
 			{
-				if($group["es_email_group"] == $form['es_email_group']) 
+				if(stripslashes($group["es_email_group"]) == $form['es_email_group']) 
 				{ 
-					$thisselected = "selected='selected'" ; 
+					$thisselected = 'selected="selected"' ; 
 				}
-				?><option value='<?php echo $group["es_email_group"]; ?>' <?php echo $thisselected; ?>><?php echo $group["es_email_group"]; ?></option><?php
+				?>
+				<option value="<?php echo esc_html(stripslashes($group["es_email_group"])); ?>" <?php echo $thisselected; ?>>
+				<?php echo esc_html(stripslashes($group["es_email_group"])); ?>
+				</option>
+				<?php
 				$thisselected = "";
 			}
 		}
