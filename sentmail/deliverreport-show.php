@@ -2,6 +2,8 @@
 <script language="javaScript" src="<?php echo ES_URL; ?>sentmail/sentmail.js"></script>
 <?php
 $sentguid = isset($_GET['sentguid']) ? $_GET['sentguid'] : '';
+es_cls_security::es_check_guid($sentguid);
+
 if ($sentguid == '')
 {
 	?>
@@ -18,6 +20,7 @@ if ($sentguid == '')
     <div class="tool-box">
 	<?php
 	$pagenum = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
+	es_cls_security::es_check_number($pagenum);
 	$limit = 200;
 	$offset = ($pagenum - 1) * $limit;
 	$total = es_cls_delivery::es_delivery_count($sentguid);

@@ -1,4 +1,5 @@
 <?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
+<?php if ( ! empty( $_POST ) && ! wp_verify_nonce( $_REQUEST['wp_create_nonce'], 'subscriber-nonce' ) )  { die('<p>Security check failed.</p>'); } ?>
 <?php
 $es_c_email_subscribers_ver = get_option('email-subscribers');
 if ($es_c_email_subscribers_ver <> "2.9")
@@ -15,22 +16,27 @@ if ($es_c_email_subscribers_ver <> "2.9")
 }
 
 // Form submitted, check the data
-$search = isset($_GET['search']) ? $_GET['search'] : 'ALL';
-$search_sts = isset($_GET['sts']) ? $_GET['sts'] : '';
-$search_count = isset($_GET['cnt']) ? $_GET['cnt'] : '1';
-$search_group = isset($_GET['group']) ? $_GET['group'] : 'ALL';
+$search = isset($_POST['searchquery']) ? $_POST['searchquery'] : 'ALL';
+$search_sts = isset($_POST['searchquery_sts']) ? $_POST['searchquery_sts'] : '';
+$search_count = isset($_POST['searchquery_cnt']) ? $_POST['searchquery_cnt'] : '1';
+$search_group = isset($_POST['searchquery_group']) ? $_POST['searchquery_group'] : 'ALL';
 
 if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 {
 	$did = isset($_GET['did']) ? $_GET['did'] : '0';
+	es_cls_security::es_check_number($did);
 	
 	$es_success = '';
 	$es_success_msg = FALSE;
+
 	if (isset($_POST['frm_es_bulkaction']) && $_POST['frm_es_bulkaction'] != 'delete' 
 			&& $_POST['frm_es_bulkaction'] != 'resend' && $_POST['frm_es_bulkaction'] != 'groupupdate' 
 				&& $_POST['frm_es_bulkaction'] != 'search_sts' && $_POST['frm_es_bulkaction'] != 'search_cnt'
 					&& $_POST['frm_es_bulkaction'] != 'search_group')
 	{	
+		//	Just security thingy that wordpress offers us
+		check_admin_referer('es_form_show');
+				
 		// First check if ID exist with requested ID
 		$result = es_cls_dbquery::es_view_subscriber_count($did);
 		if ($result != '1')
@@ -46,9 +52,6 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 			// Form submitted, check the action
 			if (isset($_GET['ac']) && $_GET['ac'] == 'del' && isset($_GET['did']) && $_GET['did'] != '')
 			{
-				//	Just security thingy that wordpress offers us
-				check_admin_referer('es_form_show');
-				
 				//	Delete selected record from the table
 				es_cls_dbquery::es_view_subscriber_delete($did);
 				
@@ -225,6 +228,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
   <div id="icon-plugins" class="icon32"></div>
   <h2><?php _e(ES_PLUGIN_DISPLAY, ES_TDOMAIN); ?></h2>
   <div class="tool-box">
+  <form name="frm_es_display" method="post" onsubmit="return _es_bulkaction()">
   <h3><?php _e('View subscriber', ES_TDOMAIN); ?> 
   <a class="add-new-h2" href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=add"><?php _e('Add New', ES_TDOMAIN); ?></a></h3>
 	<?php
@@ -257,18 +261,19 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 	
 	$myData = es_cls_dbquery::es_view_subscriber_search2($search, 0, $search_sts, $offset, $limit, $search_group);
 	?>
+	
 	<div class="tablenav">
 		<span style="text-align:left;">
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=A,B,C">A,B,C</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=D,E,F">D,E,F</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=G,H,I">G,H,I</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=J,K,L">J,K,L</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=M,N,O">M,N,O</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=P,Q,R">P,Q,R</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=S,T,U">S,T,U</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=V,W,X,Y,Z">V,W,X,Y,Z</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=0,1,2,3,4,5,6,7,8,9">0-9</a>&nbsp;&nbsp; 
-			<a class="button add-new-h2" href="admin.php?page=es-view-subscribers&search=ALL">ALL</a> 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('A,B,C')">A,B,C</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('D,E,F')">D,E,F</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('G,H,I')">G,H,I</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('J,K,L')">J,K,L</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('M,N,O')">M,N,O</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('P,Q,R')">P,Q,R</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('S,T,U')">S,T,U</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('V,W,X,Y,Z')">V,W,X,Y,Z</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('0,1,2,3,4,5,6,7,8,9')">0-9</a>&nbsp;&nbsp; 
+			<a class="button add-new-h2" href="javascript:void(0);" onClick="javascript:_es_search_sub_action('ALL')">ALL</a> 
 		<span>
 		<span style="float:right;">
 		<select name="search_group_action" id="search_group_action" onchange="return _es_search_group_action(this.value)">
@@ -310,7 +315,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 		</select>
 		</span>
     </div>
-    <form name="frm_es_display" method="post" onsubmit="return _es_bulkaction()">
+    
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
@@ -365,7 +370,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 					<td><?php echo $data['es_email_id']; ?></td>
 					<td><div> 
 					<span class="edit">
-						<a title="Edit" href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=edit&search=<?php echo $search; ?>&amp;did=<?php echo $data['es_email_id']; ?>&sts=<?php echo $search_sts; ?>&cnt=<?php echo $search_count; ?>&group=<?php echo $search_group; ?>">
+					<a target="_blank" title="Edit" href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&amp;ac=edit&amp;did=<?php echo $data['es_email_id']; ?>">
 					<?php _e('Edit', ES_TDOMAIN); ?></a> | </span> 
 					<span class="trash">
 					<a onClick="javascript:_es_delete('<?php echo $data['es_email_id']; ?>','<?php echo $search; ?>')" href="javascript:void(0);">
@@ -401,12 +406,14 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
         </tbody>
       </table>
       <?php wp_nonce_field('es_form_show'); ?>
-      <input type="hidden" name="frm_es_display" value="yes"/>
-	  <input type="hidden" name="frm_es_bulkaction" value=""/>
-	  <input name="searchquery" id="searchquery" type="hidden" value="<?php echo $search; ?>" />
-	  <input name="searchquery_sts" id="searchquery_sts" type="hidden" value="<?php echo $search_sts; ?>" />
-	  <input name="searchquery_cnt" id="searchquery_cnt" type="hidden" value="<?php echo $search_count; ?>" />
-	  <input name="searchquery_group" id="searchquery_group" type="hidden" value="<?php echo esc_html(stripslashes($search_group)); ?>" />
+      <input type="hidden" name="frm_es_display" id="frm_es_display" value="yes"/>
+	  <input type="hidden" name="frm_es_bulkaction" id="frm_es_bulkaction" value=""/>
+	  <input type="hidden" name="searchquery" id="searchquery" value="<?php echo $search; ?>" />
+	  <input type="hidden" name="searchquery_sts" id="searchquery_sts" value="<?php echo $search_sts; ?>" />
+	  <input type="hidden" name="searchquery_cnt" id="searchquery_cnt" value="<?php echo $search_count; ?>" />
+	  <input type="hidden" name="searchquery_group" id="searchquery_group" value="<?php echo $search_group; ?>" />
+	  <?php $nonce = wp_create_nonce( 'subscriber-nonce' ); ?>
+	  <input type="hidden" name="wp_create_nonce" id="wp_create_nonce" value="<?php echo $nonce; ?>"/>
 	<div style="padding-top:10px;"></div>
     <div class="tablenav">
 		<div class="alignleft">

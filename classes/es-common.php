@@ -154,4 +154,32 @@ class es_cls_common
 		return $string;
 	}
 }
+
+class es_cls_security
+{
+	public static function es_check_number($value) 
+	{
+		if(!is_numeric($value)) 
+		{ 
+			die('<p>Security check failed. Are you sure you want to do this?</p>'); 
+		}
+	}
+	
+	public static function es_check_guid($value) 
+	{
+		$value_length1 = strlen($value);
+		$value_noslash = str_replace("-", "", $value);
+		$value_length2 = strlen($value_noslash);
+		
+		if( $value_length1 != 34 || $value_length2 != 30)
+		{
+			die('<p>Security check failed. Are you sure you want to do this?</p>'); 
+		}
+		
+		if (preg_match('/[^a-z]/', $value_noslash))
+		{
+			die('<p>Security check failed. Are you sure you want to do this?</p>'); 
+		}
+	}
+}
 ?>

@@ -92,10 +92,8 @@ class es_cls_dbquery
 	
 	public static function es_view_subscriber_sendmail($search = "", $group = "")
 	{
-		
 		//echo $search . "--<br>";
 		//echo $group. "--<br>";
-		
 		global $wpdb;
 		$prefix = $wpdb->prefix;
 		$arrRes = array();
@@ -130,7 +128,7 @@ class es_cls_dbquery
 		$sSql = $sSql . " and (es_email_status = 'Confirmed' or es_email_status = 'Single Opt In')";
 		$sSql = $sSql . " order by es_email_mail asc";
 		
-		//echo "<br><br>".$sSql."<br><br>";
+		//echo "<br>".$sSql."<br>";
 		
 		$arrRes = $wpdb->get_results($sSql, ARRAY_A);
 		return $arrRes;
@@ -149,6 +147,7 @@ class es_cls_dbquery
 		{
 			$sSql = "SELECT COUNT(*) AS `count` FROM `".$prefix."es_emaillist`";
 		}
+
 		$result = $wpdb->get_var($sSql);
 		return $result;
 	}

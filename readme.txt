@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-
 Tags: email newsletter, subscription, sendmail, newsletter, subscribers
 Requires at least: 3.4
 Tested up to: 4.3
-Stable tag: 2.9
+Stable tag: 2.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -229,6 +229,10 @@ Up to plugin version 2.6 only administrator level users can manage this plugin i
 6. Notification Status option has been added in the notification setup page. With this option you can add notification mails into cron job or you can send the mail immediately when new post is published.
 7. Group name filter has been added in the subscriber admin page.
 
+= 2.9.1 =
+
+* Fixed cross-site scripting vulnerabilities and a potential SQL injection.
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -335,3 +339,7 @@ Up to plugin version 2.6 only administrator level users can manage this plugin i
 5. Mail Type option has been added in the Send Mail admin page. With this option you can add the mails into cron job or you can send the mail immediately.
 6. Notification Status option has been added in the notification setup page. With this option you can add notification mails into cron job or you can send the mail immediately when new post is published.
 7. Group name filter has been added in the subscriber admin page.
+
+= 2.9.1 =
+
+* Fixed cross-site scripting vulnerabilities and a potential SQL injection.

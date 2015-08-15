@@ -1,4 +1,5 @@
 <?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
+<?php if ( ! empty( $_POST ) && ! wp_verify_nonce( $_REQUEST['wp_create_nonce'], 'sendmail-nonce' ) )  { die('<p>Security check failed.</p>'); } ?>
 <?php
 $es_c_email_subscribers_ver = get_option('email-subscribers');
 if ($es_c_email_subscribers_ver <> "2.9")
@@ -21,7 +22,6 @@ $es_error_found = FALSE;
 $es_templ_heading = isset($_POST['es_templ_heading']) ? $_POST['es_templ_heading'] : '';
 $es_email_group = isset($_POST['es_email_group']) ? $_POST['es_email_group'] : '';
 $es_search_query = isset($_POST['es_search_query']) ? $_POST['es_search_query'] : '';
-$es_search_query = isset($_GET['search']) ? $_GET['search'] : 'A,B,C,D,E,F';
 $sendmailsubmit = isset($_POST['sendmailsubmit']) ? $_POST['sendmailsubmit'] : 'no';
 $es_sent_type = isset($_POST['es_sent_type']) ? $_POST['es_sent_type'] : '';
 
@@ -248,10 +248,11 @@ if ($es_error_found == TRUE && isset($es_errors[0]) == TRUE)
 		</tr>
 	</tbody>
 	</table>
-	  
+	<?php $nonce = wp_create_nonce( 'sendmail-nonce' ); ?>
 	<div style="padding-top:10px;">
 	<input type="hidden" name="es_search_query" id="es_search_query" value="<?php echo $es_search_query; ?>"/>
 	<input type="hidden" name="sendmailsubmit" id="sendmailsubmit" value=""/>
+	<input type="hidden" name="wp_create_nonce" id="wp_create_nonce" value="<?php echo $nonce; ?>"/>
 	<?php if( $count <> 0 ) { ?>
 	<input type="submit" name="Submit" class="button add-new-h2" value="<?php _e('Send Email', ES_TDOMAIN); ?>" style="width:160px;" />&nbsp;&nbsp;
 	<?php } else { ?>

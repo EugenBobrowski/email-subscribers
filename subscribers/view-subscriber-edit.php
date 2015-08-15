@@ -2,11 +2,8 @@
 <div class="wrap">
 <?php
 $es_error_found = FALSE;
-
 $did = isset($_GET['did']) ? $_GET['did'] : '0';
-$search = isset($_GET['search']) ? $_GET['search'] : 'A,B,C';
-$sts = isset($_GET['sts']) ? $_GET['sts'] : '';
-$cnt = isset($_GET['cnt']) ? $_GET['cnt'] : '1';
+es_cls_security::es_check_number($did);
 
 // First check if ID exist with requested ID
 $result = es_cls_dbquery::es_view_subscriber_count($did);
@@ -85,7 +82,7 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
 	?>
 	<div class="updated fade">
 		<p><strong><?php echo $es_success; ?> 
-		<a href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers&search=<?php echo $search; ?>&sts=<?php echo $sts; ?>&cnt=<?php echo $cnt; ?>">
+		<a href="<?php echo ES_ADMINURL; ?>?page=es-view-subscribers">
 		<?php _e('Click here', ES_TDOMAIN); ?></a> <?php _e(' to view the details', ES_TDOMAIN); ?></strong></p>
 	</div>
 	<?php

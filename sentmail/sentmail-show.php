@@ -4,6 +4,7 @@
 if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 {
 	$did = isset($_GET['did']) ? $_GET['did'] : '0';
+	es_cls_security::es_check_number($did);
 	
 	$es_success = '';
 	$es_success_msg = FALSE;
@@ -54,6 +55,7 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
     <div class="tool-box">
 	<?php
 	$pagenum = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
+	es_cls_security::es_check_number($pagenum);
 	$limit = 30;
 	$offset = ($pagenum - 1) * $limit;
 	$total = es_cls_sentmail::es_sentmail_count(0);
