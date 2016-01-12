@@ -1,25 +1,17 @@
 === Email Subscribers ===
-Contributors: gopiplus, www.gopiplus.com
-Donate link: http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
-Author URI: http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
-Plugin URI: http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+Contributors: storeapps
+Donate link: http://www.storeapps.org/
+Author URI: http://www.storeapps.org/
+Plugin URI: http://www.storeapps.org/
 Tags: email newsletter, subscription, sendmail, newsletter, subscribers
 Requires at least: 3.4
 Tested up to: 4.4
-Stable tag: 3.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 3.0.1
+License: GPLv3
 
 Create and Send HTML newsletters to subscribers. Also this have option to send notification email to subscribers when new posts are published.
 
 == Description ==
-
-Check official website for live demo [http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/](http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/)
-
-*   [Live Demo](http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/ "Live Demo")
-*   [More Informations](http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/ "More Informations")
-*   [Suggestion](http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/ "Suggestion")
-*   [Video Tutorial](http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/ "Video Tutorial")
 
 Email subscribers plugin has options to send newsletters to subscribers. It has a separate page with HTML editor to create a HTML newsletter. Also have options to send notification email to subscribers when new posts are published to your blog. Separate page available to include and exclude categories to send notifications. Using plugin Import and Export options admins can easily import registered users and commenters to subscriptions list.
 
@@ -50,42 +42,42 @@ This plugin have subscription box and it allows users to publicly subscribe by s
 
 = Translators =
 
-* English (en_EN) - [Gopi Ramasamy](http://www.gopiplus.com/)
-* Turkish (tr_TR) - [Dr Abdullah Manaz](http://www.manaz.net/)
-* Tamil (ta) - [Gopi Ramasamy](http://www.gopiplus.com/)
-* Dutch (nl_NL) - [John van Halderen](http://www.dorpspleinleusden.nl/)
-* Dutch (nl_NL_2) - [Paul't Hoen](#)
-* Serbian (sr_RS) - [Ogi Djuraskovic](http://firstsiteguide.com/)
-* German (de_DE) - [Stefanie Drucker](http://www.kreativhuhn.at)
-* Russian (ru_RU) - [everyonesdesign](https://wordpress.org/support/profile/everyonesdesign)
-* Polish (pl) - [Abdul Sattar](https://www.couponmachine.in/)
-
-= Frequently asked questions: =
-
-*   Q1. What are all the steps to do after plugin activation?
-*   Q2. How to setup subscription box widget?
-*   Q3. How to import and export email address to subscriber list?
-*   Q4. How to compose static newsletter?
-*   Q5. How to add subscription box in posts?
-*   Q6. How to modify the existing mails (Opt-in mail, Welcome mail, Admin mails) content?
-*   Q7. How to send static newsletter manually?
-*   Q8. Where to check sent mails?
-*   Q9. How to configure notification email to subscribers when new posts are published?
-*   Q10. How to update default alert message from subscription box?
-*   Q11. How to add new subscribers group?
-*   Q12. Is plugin contain bulk update option for subscribers group?
-*   Q13. Is Mail not working on Email Subscribers wordpress plugin?
-*   Q14. How to assign user roles to plugin menu?
-*   Q15. How to schedule auto mails (Cron mails)?
-*   Q16. How to schedule auto emails for Email subscribers wordpress plugin in cPanel?
-*   Q17. How to schedule auto emails for Email subscribers wordpress plugin in Parallels Plesk?
-*   Q18. How to add Group Selection in front end subscription box?
+* English (en_EN)
+* Turkish (tr_TR) - Dr Abdullah Manaz
+* Tamil (ta) - Gopi Ramasamy
+* Dutch (nl_NL) - John van Halderen
+* Dutch (nl_NL_2) - Paul't Hoen
+* Serbian (sr_RS) - Ogi Djuraskovic
+* German (de_DE) - Stefanie Drucker
+* Russian (ru_RU) - everyonesdesign
+* Polish (pl) - Abdul Sattar
 
 == Installation ==
 
 Installation Instruction and Configuration [Installation Instruction and Configuration](http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/)
 
 == Frequently Asked Questions ==
+
+= How to install and activate the plugin? and How to setup subscription box widget?﻿ =
+
+[youtube http://www.youtube.com/watch?v=xTlvNCTF46k]
+
+= How to compose Newsletter and How to Send Newsletter Emails to subscribers? =
+
+[youtube http://www.youtube.com/watch?v=_Gwxvs9oAIs]
+
+= How to setup notification mail when news posts are published in the blog? =
+
+[youtube http://www.youtube.com/watch?v=-qd4HvXRW7k]
+
+= How to Import & Export email address? =
+
+[youtube http://www.youtube.com/watch?v=SZEJCijAS1o]
+
+= How to update default alert message from subscription box? =
+
+[youtube http://www.youtube.com/watch?v=VwgEqsE5Ozw]
+
 
 *   Q1. What are all the steps to do after plugin activation?
 *   Q2. How to setup subscription box widget?
@@ -111,19 +103,19 @@ FAQ Answer [http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-
 
 == Screenshots ==
 
-1. Front Page. Subscription box. http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+1. Front Page. Subscription box.
 
-2. Admin Page. Subscriber Management page. http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+2. Admin Page. Subscriber Management page.
 
-3. Admin Page. Send Mail Page. http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+3. Admin Page. Send Mail Page.
 
-4. Admin Page. Setting Page. http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+4. Admin Page. Setting Page.
 
-5. Admin Page. Notification Management Page. http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+5. Admin Page. Notification Management Page.
 
-6. Roles Page. Roles and Capabilities Management Page. http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+6. Roles Page. Roles and Capabilities Management Page.
 
-7. Schedule mail (Cron job). Cron Job Detailes Page. http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
+7. Schedule mail (Cron job). Cron Job Detailes Page.
 
 == Changelog ==
 
@@ -185,7 +177,7 @@ FAQ Answer [http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-
 = 2.1 =
 
 * In view subscribers admin page, Filter option and paging moved to the top right corner (Previous version it was in bottom).
-* Plugin tested for multisite installation blogs. http://www.gopiplus.com/work/2014/08/31/email-subscribers-wordpress-plugin-network-activation-for-multisite-installation/
+* Plugin tested for multisite installation blogs.
 
 = 2.2 =
 
@@ -245,6 +237,10 @@ Up to plugin version 2.6 only administrator level users can manage this plugin i
 = 3.0 =
 
 * Tested upto 4.4
+
+= 3.0.1 =
+
+* New contributor name has been added successfully.
 
 == Upgrade Notice ==
 
@@ -306,7 +302,7 @@ Up to plugin version 2.6 only administrator level users can manage this plugin i
 = 2.1 =
 
 * In view subscribers admin page, Filter option and paging moved to the top right corner (Previous version it was in bottom).
-* Plugin tested for multisite installation blogs. http://www.gopiplus.com/work/2014/08/31/email-subscribers-wordpress-plugin-network-activation-for-multisite-installation/
+* Plugin tested for multisite installation blogs.
 
 = 2.2 =
 
@@ -366,3 +362,7 @@ Up to plugin version 2.6 only administrator level users can manage this plugin i
 = 3.0 =
 
 * Tested upto 4.4
+
+= 3.0.1 =
+
+* New contributor name has been added successfully.

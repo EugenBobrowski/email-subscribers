@@ -1,9 +1,8 @@
 Plugin Name	: Email Subscribers
-Plugin URI	: http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/
-Author		: Gopi Ramasamy
-Author URI	: http://www.gopiplus.com
-License		: GPLv2 or later
-License URI	: http://www.gnu.org/licenses/gpl-2.0.html
+Plugin URI	: http://www.storeapps.org/
+Author		: Store Apps
+Author URI	: http://www.storeapps.org/
+License		: GPLv3
  
 ********************************Version 1.0************************************************************
 
@@ -70,7 +69,6 @@ plugin will send one report mail to admin with default content. Now with this op
 
 * In view subscribers admin page, Filter option and paging moved to the top right corner (Previous version it was in bottom).
 * Plugin tested for multisite installation blogs.
-http://www.gopiplus.com/work/2014/08/31/email-subscribers-wordpress-plugin-network-activation-for-multisite-installation/
 
 ********************************Version 2.2************************************************************
 
@@ -132,3 +130,7 @@ using administrator login and select Editor role to Send Email Menu, So that you
 ********************************Version 3.0************************************************************
 
 * Tested upto 4.4
+
+********************************Version 3.0.1************************************************************
+
+* New contributor name has been added successfully.
