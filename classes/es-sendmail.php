@@ -351,9 +351,9 @@ class es_cls_sendmail
 					$the_excerpt = implode(' ', $words);
 				}
 
-				if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail($post_id)))
+				if ( (function_exists('has_post_thumbnail')) && (has_post_thumbnail($post_id)) )
 				{
-					$post_thumbnail = get_the_post_thumbnail($post_id, 'thumbnail');
+					$post_thumbnail = get_the_post_thumbnail($post_id, 'full');
 				}
 				
 				if($post_thumbnail <> "")
@@ -422,13 +422,21 @@ class es_cls_sendmail
 						break;
 						
 					case 'welcome':
-						$content_send = str_replace("###NAME###", $name , $content);
+						$content_send = str_replace("###NAME###", $name, $content);
 						$content_send = str_replace("###EMAIL###", $to, $content_send);
-						
+
+						$unsublink = $settings['es_c_unsublink'];
+						$unsublink = str_replace("###DBID###", $subscriber["es_email_id"], $unsublink);
+						$unsublink = str_replace("###EMAIL###", $subscriber["es_email_mail"], $unsublink);
+						$unsublink = str_replace("###GUID###", $subscriber["es_email_guid"], $unsublink);
+						$unsublink  = $unsublink . "&cache=".$cacheid;
+						$content_send = str_replace("###LINK###", $unsublink, $content_send);
+
 						$adminmailsubject = stripslashes($settings['es_c_adminmailsubject']);	
 						$adminmailcontant = stripslashes($settings['es_c_adminmailcontant']);
 						$adminmailcontant = str_replace("###NAME###", $name , $adminmailcontant);
 						$adminmailcontant = str_replace("###EMAIL###", $to, $adminmailcontant);
+
 						if ( $settings['es_c_mailtype'] == "WP HTML MAIL" || $settings['es_c_mailtype'] == "PHP HTML MAIL" )
 						{
 							$adminmailcontant = nl2br($adminmailcontant);
@@ -438,18 +446,18 @@ class es_cls_sendmail
 						{
 							$adminmailcontant = str_replace("<br />", "\r\n", $adminmailcontant);
 							$adminmailcontant = str_replace("<br>", "\r\n", $adminmailcontant);
-						}	
+						}
 						break;
 						
 					case 'newsletter':
 						if($mailsenttype <> "Cron Mail") // Cron mail not sending by this method
 						{
-							$unsublink = $settings['es_c_unsublink'];				
+							$unsublink = $settings['es_c_unsublink'];
 							$unsublink = str_replace("###DBID###", $subscriber["es_email_id"], $unsublink);
 							$unsublink = str_replace("###EMAIL###", $subscriber["es_email_mail"], $unsublink);
 							$unsublink = str_replace("###GUID###", $subscriber["es_email_guid"], $unsublink);
 							$unsublink  = $unsublink . "&cache=".$cacheid;
-							
+
 							$unsubtext = stripslashes($settings['es_c_unsubtext']);
 							$unsubtext = str_replace("###LINK###", $unsublink , $unsubtext);
 							if ( $settings['es_c_mailtype'] == "WP HTML MAIL" || $settings['es_c_mailtype'] == "PHP HTML MAIL" )

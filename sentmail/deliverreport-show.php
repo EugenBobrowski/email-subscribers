@@ -1,6 +1,6 @@
-<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>sentmail/sentmail.js"></script>
 <?php
+if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } 
+
 $sentguid = isset($_GET['sentguid']) ? $_GET['sentguid'] : '';
 es_cls_security::es_check_guid($sentguid);
 

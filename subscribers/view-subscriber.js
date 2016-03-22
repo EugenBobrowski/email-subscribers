@@ -5,26 +5,26 @@ function _es_redirect()
 
 function _es_help()
 {
-	window.open("http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/");
+	window.open("https://wordpress.org/plugins/email-subscribers/faq/");
 }
 
 function _es_addemail()
 {
 	if(document.form_addemail.es_email_mail.value=="")
 	{
-		alert("Please enter subscriber email address.")
+		alert(es_view_subscriber_notices.es_subscriber_email);
 		document.form_addemail.es_email_mail.focus();
 		return false;
 	}
 	else if(document.form_addemail.es_email_status.value=="" || document.form_addemail.es_email_status.value=="Select")
 	{
-		alert("Please select subscriber email status.")
+		alert(es_view_subscriber_notices.es_subscriber_email_status);
 		document.form_addemail.es_email_status.focus();
 		return false;
 	}
 	else if( (document.form_addemail.es_email_group.value == "") && (document.form_addemail.es_email_group_txt.value == "") )
 	{
-		alert("Please select or create group for this subscriber.")
+		alert(es_view_subscriber_notices.es_subscriber_group);
 		document.form_addemail.es_email_group.focus();
 		return false;
 	}
@@ -32,7 +32,7 @@ function _es_addemail()
 
 function _es_delete(id, query)
 {
-	if(confirm("Do you want to delete this record?"))
+	if(confirm(es_view_subscriber_notices.es_subscriber_delete_record))
 	{
 		document.getElementById("searchquery").value = document.frm_es_display.searchquery.value;;
 		document.getElementById("searchquery_cnt").value = document.frm_es_display.searchquery_cnt.value;
@@ -124,22 +124,20 @@ function _es_search_count_action(cnt)
 	document.frm_es_display.submit();
 }
 
-
-
 function _es_bulkaction()
 {
 	if(document.frm_es_display.bulk_action.value=="")
 	{
-		alert("Please select the bulk action."); 
+		alert(es_view_subscriber_notices.es_subscriber_bulk_action); 
 		document.frm_es_display.bulk_action.focus();
 		return false;
 	}
 	
 	if(document.frm_es_display.bulk_action.value == "delete")
 	{
-		if(confirm("Do you want to delete selected record(s)?"))
+		if(confirm(es_view_subscriber_notices.es_subscriber_delete_records))
 		{
-			if(confirm("Are you sure you want to delete?"))
+			if(confirm(es_view_subscriber_notices.es_subscriber_confirm_delete))
 			{
 				//var searchquery = document.frm_es_display.searchquery.value;
 				//var sts = document.frm_es_display.searchquery_sts.value;
@@ -167,7 +165,7 @@ function _es_bulkaction()
 	}
 	else if(document.frm_es_display.bulk_action.value == "resend")
 	{
-		if(confirm("Do you want to resend confirmation email? \nAlso please note, this will update subscriber current status to 'Unconfirmed'."))
+		if(confirm(es_view_subscriber_notices.es_subscriber_resend_email))
 		{
 			//var searchquery = document.frm_es_display.searchquery.value;
 			//var sts = document.frm_es_display.searchquery_sts.value;
@@ -192,12 +190,12 @@ function _es_bulkaction()
 	{
 		if(document.frm_es_display.es_email_group.value=="")
 		{
-			alert("Please select new subscriber group.");
+			alert(es_view_subscriber_notices.es_subscriber_new_group);
 			document.frm_es_display.es_email_group.focus();
 			return false;
 		}
 	
-		if(confirm("Do you want to update subscribers group?"))
+		if(confirm(es_view_subscriber_notices.es_subscriber_group_update))
 		{
 			//var searchquery = document.frm_es_display.searchquery.value;
 			//var sts = document.frm_es_display.searchquery_sts.value;
@@ -234,7 +232,7 @@ function _es_action_visible(val)
 
 function _es_exportcsv(url, option)
 {
-	if(confirm("Do you want to export the emails?"))
+	if(confirm(es_view_subscriber_notices.es_subscriber_export))
 	{
 		document.frm_es_subscriberexport.action= url+"&option="+option;
 		document.frm_es_subscriberexport.submit();
@@ -249,13 +247,13 @@ function _es_importemail()
 	{
         if(document.form_addemail.es_email_status.value=="" || document.form_addemail.es_email_status.value=="Select")
 		{
-			alert("Please select subscriber email status.")
+			alert(es_view_subscriber_notices.es_subscriber_email_status);
 			document.form_addemail.es_email_status.focus();
 			return false;
 		}
 		else if( (document.form_addemail.es_email_group.value == "") && (document.form_addemail.es_email_group_txt.value == "") )
 		{
-			alert("Please select or create group for this subscriber.")
+			alert(es_view_subscriber_notices.es_subscriber_group);
 			document.form_addemail.es_email_group.focus();
 			return false;
 		}
@@ -266,7 +264,7 @@ function _es_importemail()
     } 
 	else 
 	{
-		alert('Please select only csv file. \nPlease check official website for csv structure.');  
+		alert(es_view_subscriber_notices.es_subscriber_csv_file);  
 		return false;
     }
 }

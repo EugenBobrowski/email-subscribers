@@ -178,7 +178,6 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
 	<?php
 }
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>settings/settings.js"></script>
 <style>
 .form-table th {
     width: 350px;
@@ -247,7 +246,7 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
 				<label for="elp"><?php _e('Opt-in link (Confirmation link)', 'email-subscribers'); ?><p class="description">
 				<?php _e('Double Opt In confirmation link. You no need to change this value.', 'email-subscribers'); ?></p></label>
 			</th>
-			<td><input name="es_c_optinlink" type="text" id="es_c_optinlink" value="<?php echo esc_html(stripslashes($form['es_c_optinlink'])); ?>" size="60" maxlength="225" /></td>
+			<td><input name="es_c_optinlink" type="text" id="es_c_optinlink" value="<?php echo esc_html(stripslashes($form['es_c_optinlink'])); ?>" size="60" maxlength="225" readonly /></td>
 		</tr>
 		<tr>
 			<th scope="row"> 
@@ -324,7 +323,7 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
 				<label for="elp"><?php _e('Unsubscribe link', 'email-subscribers'); ?>
 				<p class="description"><?php _e('Unsubscribe link. You no need to change this value.', 'email-subscribers'); ?></p></label>
 			</th>
-			<td><input name="es_c_unsublink" type="text" id="es_c_unsublink" value="<?php echo esc_html(stripslashes($form['es_c_unsublink'])); ?>" size="60" maxlength="225" /></td>
+			<td><input name="es_c_unsublink" type="text" id="es_c_unsublink" value="<?php echo esc_html(stripslashes($form['es_c_unsublink'])); ?>" size="60" maxlength="225" readonly /></td>
 		</tr>
 		<tr>
 			<th scope="row"> 

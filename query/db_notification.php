@@ -65,7 +65,7 @@ class es_cls_notification
 		$wpdb->query($sSql);
 		return true;
 	}
-	
+
 	public static function es_notification_prepare($post_id = 0)
 	{
 		global $wpdb;

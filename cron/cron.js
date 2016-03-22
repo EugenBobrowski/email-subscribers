@@ -2,13 +2,13 @@ function _es_submit()
 {
 	if(document.es_form.es_cron_mailcount.value == "")
 	{
-		alert("Please select enter number of mails you want to send per hour/trigger.")
+		alert(es_cron_notices.es_cron_number);
 		document.es_form.es_cron_mailcount.focus();
 		return false;
 	}
 	else if(isNaN(document.es_form.es_cron_mailcount.value))
 	{
-		alert("Please enter the mail count, only number.")
+		alert(es_cron_notices.es_cron_input_type);
 		document.es_form.es_cron_mailcount.focus();
 		return false;
 	}
@@ -21,5 +21,5 @@ function _es_redirect()
 
 function _es_help()
 {
-	window.open("http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/");
+	window.open("https://wordpress.org/plugins/email-subscribers/faq/");
 }

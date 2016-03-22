@@ -38,7 +38,6 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 	}
 }
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>notification/notification.js"></script>
 <div class="wrap">
   <div id="icon-plugins" class="icon32"></div>
     <h2><?php _e(ES_PLUGIN_DISPLAY, 'email-subscribers'); ?></h2>

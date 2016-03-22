@@ -82,7 +82,6 @@ if ($es_error_found == TRUE && isset($es_errors[0]) == TRUE)
 	?><div class="error fade"><p><strong><?php echo $es_errors[0]; ?></strong></p></div><?php
 }
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>sendmail/sendmail.js"></script>
 <style>
 .form-table th {
     width: 250px;

@@ -76,7 +76,6 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
 	<?php
 }
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>compose/compose.js"></script>
 <div class="form-wrap">
 	<div id="icon-plugins" class="icon32"></div>
 	<h2><?php _e(ES_PLUGIN_DISPLAY, 'email-subscribers'); ?></h2>

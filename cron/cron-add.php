@@ -66,7 +66,6 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
 	<?php
 }
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>cron/cron.js"></script>
 <div class="form-wrap">
 	<div id="icon-plugins" class="icon32"></div>
 	<h2><?php _e(ES_PLUGIN_DISPLAY, 'email-subscribers'); ?></h2>
@@ -95,10 +94,10 @@ if ($es_error_found == FALSE && strlen($es_success) > 0)
     </form>
 </div>
 <div class="tool-box">
-	<h3><?php _e('How to setup auto emails?', 'email-subscribers'); ?></h3>
-	<p><?php _e('I strongly recommend you to use "Send mail via cron job" option to send your newsletters and notification. The following link explains how to create a CRON job through the cPanel or Plesk.', 'email-subscribers'); ?></p>
-	<p><?php _e('How to setup auto emails (cron job) in Plesk', 'email-subscribers'); ?> <a target="_blank" href="#"><?php _e('Click here', 'email-subscribers'); ?></a>.</p>
-	<p><?php _e('How to setup auto emails (cron job) in cPanal', 'email-subscribers'); ?> <a target="_blank" href="#"><?php _e('Click here', 'email-subscribers'); ?></a>.</p>
-	<p><?php _e('Hosting doesnt support cron jobs?', 'email-subscribers'); ?> <a target="_blank" href="#"><?php _e('Click here', 'email-subscribers'); ?></a> for solution.</p>
+	<h3><?php _e( 'How to setup auto emails using CRON Job through the cPanel or Plesk?', 'email-subscribers' ); ?></h3>
+	<li><?php _e( '<a target="_blank" href="http://www.gopiplus.com/work/2015/08/02/how-to-schedule-auto-emails-for-email-subscribers-wordpress-plugin-in-parallels-plesk/">Setup cron job in Plesk</a>', 'email-subscribers' ); ?></li>
+	<li><?php _e( '<a target="_blank" href="http://www.gopiplus.com/work/2015/08/04/how-to-schedule-auto-emails-for-email-subscribers-wordpress-plugin-in-cpanel/">Setup cron job in cPanal</a>', 'email-subscribers' ); ?></li>
+	<li><?php _e( '<a target="_blank" href="http://www.gopiplus.com/work/2015/08/08/email-subscribers-wordpress-plugin-how-to-schedule-auto-mails-cron-mails/">Hosting doesnt support cron jobs?</a>', 'email-subscribers' ); ?></li><br>
 </div>
 </div>
+<p class="description"><?php echo ES_OFFICIAL; ?></p>

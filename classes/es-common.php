@@ -129,8 +129,7 @@ class es_cls_common
 		$report = $report. "Start Time: ###STARTTIME### \n";
 		$report = $report. "End Time: ###ENDTIME### \n";
 		$report = $report. "For more information, Login to your Dashboard and go to Sent Mails menu in Email Subscribers. \n\n";
-		$report = $report. "Thank You \n";
-		$report = $report. "www.gopiplus.com \n";
+		$report = $report. "Thank You. \n";
 		return $report;
 	}
 	
@@ -143,8 +142,7 @@ class es_cls_common
 		$report = $report. "Start Time: ###STARTTIME### <br/>";
 		$report = $report. "End Time: ###ENDTIME### <br/>";
 		$report = $report. "For more information, Login to your Dashboard and go to Sent Mails menu in Email Subscribers. <br/><br/>";
-		$report = $report. "Thank You <br/>";
-		$report = $report. "www.gopiplus.com <br/>";
+		$report = $report. "Thank You. <br/>";
 		return $report;
 	}
 	

@@ -1,5 +1,5 @@
-<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
-<?php
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
+
 // Form submitted, check the data
 if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 {
@@ -47,7 +47,6 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 	}
 }
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>sentmail/sentmail.js"></script>
 <div class="wrap">
   <div id="icon-plugins" class="icon32"></div>
     <h2><?php _e(ES_PLUGIN_DISPLAY, 'email-subscribers'); ?></h2>

@@ -10,7 +10,6 @@ if ($result != '1')
 	?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist.', 'email-subscribers'); ?></strong></p></div><?php
 }
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>compose/compose.js"></script>
 <div class="wrap">
   <div id="icon-plugins" class="icon32"></div>
     <h2><?php _e(ES_PLUGIN_DISPLAY, 'email-subscribers'); ?></h2>

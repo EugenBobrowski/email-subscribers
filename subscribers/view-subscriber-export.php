@@ -4,9 +4,7 @@
 //    session_start();
 //}
 ?>
-<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>subscribers/view-subscriber.js"></script>
-<?php
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
 //$_SESSION['es_exportcsv'] = "YES"; 
 $home_url = home_url('/');
 $cnt_subscriber = 0;
@@ -45,19 +43,19 @@ $cnt_comment_author = $wpdb->get_var("SELECT count(DISTINCT comment_author_email
         <td>1</td>
         <td><?php _e('Subscriber email address', 'email-subscribers'); ?></td>
 		<td><?php echo $cnt_subscriber; ?></td>
-        <td><a onClick="javascript:_es_exportcsv('<?php echo $home_url. "?es=export"; ?>', 'view_subscriber')" href="javascript:void(0);"><?php _e('Click to export csv', 'email-subscribers'); ?></a> </td>
+        <td><a onClick="javascript:_es_exportcsv('<?php echo $home_url. "?es=export"; ?>', 'view_subscriber')" href="javascript:void(0);"><?php _e('Click to export csv', 'email-subscribers'); ?></a></td>
       </tr>
       <tr class="alternate">
         <td>2</td>
         <td><?php _e('Registered email address', 'email-subscribers'); ?></td>
 		<td><?php echo $cnt_users; ?></td>
-        <td><a onClick="javascript:_es_exportcsv('<?php echo $home_url. "?es=export"; ?>', 'registered_user')" href="javascript:void(0);"><?php _e('Click to export csv', 'email-subscribers'); ?></a> </td>
+        <td><a onClick="javascript:_es_exportcsv('<?php echo $home_url. "?es=export"; ?>', 'registered_user')" href="javascript:void(0);"><?php _e('Click to export csv', 'email-subscribers'); ?></a></td>
       </tr>
       <tr>
         <td>3</td>
         <td><?php _e('Comments author email address', 'email-subscribers'); ?></td>
 		<td><?php echo $cnt_comment_author; ?></td>
-        <td><a onClick="javascript:_es_exportcsv('<?php echo $home_url. "?es=export"; ?>', 'commentposed_user')" href="javascript:void(0);"><?php _e('Click to export csv', 'email-subscribers'); ?></a> </td>
+        <td><a onClick="javascript:_es_exportcsv('<?php echo $home_url. "?es=export"; ?>', 'commentposed_user')" href="javascript:void(0);"><?php _e('Click to export csv', 'email-subscribers'); ?></a></td>
       </tr>
     </tbody>
   </table>

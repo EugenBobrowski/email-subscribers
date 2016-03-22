@@ -222,8 +222,8 @@ if (isset($_POST['frm_es_display']) && $_POST['frm_es_display'] == 'yes')
 		?><div class="updated fade"><p><strong><?php echo $es_success; ?></strong></p></div><?php
 	}
 }
+
 ?>
-<script language="javaScript" src="<?php echo ES_URL; ?>subscribers/view-subscriber.js"></script>
 <div class="wrap">
   <div id="icon-plugins" class="icon32"></div>
   <h2><?php _e(ES_PLUGIN_DISPLAY, 'email-subscribers'); ?></h2>

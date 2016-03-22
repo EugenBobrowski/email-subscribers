@@ -5,7 +5,7 @@ function _es_redirect()
 
 function _es_help()
 {
-	window.open("http://www.gopiplus.com/work/2014/05/02/email-subscribers-wordpress-plugin/");
+	window.open("https://wordpress.org/plugins/email-subscribers/faq/");
 }
 
 function _es_checkall(FormName, FieldName, CheckValue)
@@ -52,18 +52,18 @@ function _es_submit()
 {
 	if(document.es_form.es_templ_heading.value=="")
 	{
-		alert("Please select your mail subject.")
+		alert(es_sendmail_notices.es_sendmail_subject);
 		document.es_form.es_templ_heading.focus();
 		return false;
 	}
 	if(document.es_form.es_sent_type.value=="")
 	{
-		alert("Please select your mail type.")
+		alert(es_sendmail_notices.es_sendmail_status);
 		document.es_form.es_sent_type.focus();
 		return false;
 	}
 	
-	if(confirm("Are you sure you want to send email to all selected email address?"))
+	if(confirm(es_sendmail_notices.es_sendmail_confirm))
 	{
 		document.getElementById("es_templ_heading").value = document.es_form.es_templ_heading.value;
 		document.getElementById("es_email_group").value = document.es_form.es_email_group.value;

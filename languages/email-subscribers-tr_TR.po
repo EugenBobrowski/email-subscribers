@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Email subscribers\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 14:31+0800\n"
-"PO-Revision-Date: 2015-11-28 14:31+0800\n"
+"POT-Creation-Date: 2015-11-14 13:53+0800\n"
+"PO-Revision-Date: 2015-11-14 13:54+0800\n"
 "Last-Translator: \n"
-"Language-Team: www.gopiplus.com <www.gopiplus.com>\n"
+"Language-Team: \n"
 "Language: Turkish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +30,11 @@ msgstr "Adınız / YourName"
 
 #: ../classes/es-loadwidget.php:33 ../classes/es-register.php:255
 msgid "Email *"
-msgstr "EPosta Adresi / EMail Address *"
+msgstr "EPosta Adresi*"
 
 #: ../classes/es-loadwidget.php:38 ../classes/es-register.php:260
 msgid "Subscribe"
-msgstr "BeniKaydet / Subscribe"
+msgstr "Abone Ol"
 
 #: ../classes/es-register.php:43
 msgid "These tables could not be created on installation "
